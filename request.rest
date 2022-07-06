@@ -1,0 +1,88 @@
+###
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+	"email":"guilherme@gmail.com",
+	"name":"Guilherme",
+	"password":"123456",
+	"role":"ADMIN"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+	"email":"guilherme@gmail.com",
+	"password":"123456"
+}
+
+
+###
+POST http://localhost:3003/band/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njg3OTMzMiwiZXhwIjoxNjU2ODgyOTMyfQ.F0xepD5_eJqXaj4_hCreOrxes6KzVjL7Zg82niPN0bI
+
+{
+	"name":"Guns and Roses",
+	"music_genre":"Rock",
+	"responsible":"Axl Rose"
+}
+
+###
+GET http://localhost:3003/band/details?id=b4d4b87f-9dbb-49ff-9ee3-1c067eb1608e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njg2OTIyNywiZXhwIjoxNjU2ODcyODI3fQ.J6D_KQn282608v5STf9nHa6XRQv1mcI08VeC6s799IY
+
+###
+POST http://localhost:3003/show/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njg3OTMzMiwiZXhwIjoxNjU2ODgyOTMyfQ.F0xepD5_eJqXaj4_hCreOrxes6KzVjL7Zg82niPN0bI
+
+{
+	"weekDay":"SEXTA",
+	"startTime":10,
+	"endTime":11,
+	"bandId":"c58e8208-3c2f-496a-8bd0-9393f58a6e88"
+}
+
+###
+GET http://localhost:3003/show/SEXTA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njg3OTMzMiwiZXhwIjoxNjU2ODgyOTMyfQ.F0xepD5_eJqXaj4_hCreOrxes6KzVjL7Zg82niPN0bI
+
+###
+POST http://localhost:3003/ticket/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjkwMTE2MywiZXhwIjoxNjU2OTA0NzYzfQ.KacC2DM-8xMSrIWqt6vE_zkhv01nAEcf5lCclyCh1fI
+
+{
+	"name":"Ingresso para o show do Queen",
+	"price":20.0,
+	"eventId":"dc36b092-32e1-46e7-a1e0-2fe9f21ebdd6",
+	"qtdTickets":10
+}
+
+###
+POST http://localhost:3003/gallery/addImage
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njk2NDUwNiwiZXhwIjoxNjU2OTY4MTA2fQ.8QQkQ6HdGJ06Nzld27ViXSl33TQvgpap27_SmHHfG0k
+
+{
+	"imgUrl":"https://whiplash.net/imagens_promo/queen_rir_ps.jpg",
+	"eventId":"dc36b092-32e1-46e7-a1e0-2fe9f21ebdd6"
+}
+
+
+###
+GET http://localhost:3003/gallery/dc36b092-32e1-46e7-a1e0-2fe9f21ebdd6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njk2NDUwNiwiZXhwIjoxNjU2OTY4MTA2fQ.8QQkQ6HdGJ06Nzld27ViXSl33TQvgpap27_SmHHfG0k
+
+###
+PUT http://localhost:3003/ticket/buy
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MmFjNGQyLWFmODYtNDE4Yi05ODJiLTY0MmRjZGI4YjYwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njk2ODQ1MywiZXhwIjoxNjU2OTcyMDUzfQ.zzf0hjPJptnhjjONYyiKHW1GpypjhhspcX4O0ZzadaI
+
+{
+	"qtdTickets":2,
+	"name":"Ingresso para o show do Queen"
+}
