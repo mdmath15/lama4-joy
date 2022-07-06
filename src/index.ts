@@ -16,11 +16,11 @@ app.use("/band",bandRouter);
 app.use("/show",showRouter);
 app.use("/ticket",ticketRouter)
 app.use("/gallery",galleryRouter)
-const server = app.listen(3003, () => {
-    if (server) {
-      const address = server.address() as AddressInfo;
-      console.log(`Servidor rodando em http://localhost:${address.port}`);
-    } else {
-      console.error(`Falha ao rodar o servidor.`);
-    }
-  });
+const server = app.listen(process.env.PORT ||3003, () => {
+  if (server) {
+    const address = server.address() as AddressInfo
+    console.log(`Servidor rodando em http://localhost:${address.port}`)
+  } else {
+    console.error(`Falha ao rodar o servidor.`)
+  }
+})
