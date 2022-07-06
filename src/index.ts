@@ -15,7 +15,8 @@ app.use("/user", userRouter);
 app.use("/band",bandRouter);
 app.use("/show",showRouter);
 app.use("/ticket",ticketRouter)
-app.use("/gallery",galleryRouter)
+app.use("/gallery", galleryRouter)
+
 const server = app.listen(process.env.PORT ||3003, () => {
   if (server) {
     const address = server.address() as AddressInfo
