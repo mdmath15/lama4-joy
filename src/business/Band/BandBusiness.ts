@@ -7,7 +7,7 @@ import { BandRepository } from "./BandRepository";
 import { Authenticator } from "../../services/Authenticator";
 
 export class BandBusiness implements BandRepository{
-	 bandDatabase=new BandDatabase()
+	constructor(private bandDatabase: BandDatabase, private userDatabase: UserDatabase, private authenticator: Authenticator, private idGenerator: IdGenerator) {}
 	async createBand(input:BandInputDTO,token:string){
 		try {
 			if (!token) {
@@ -17,10 +17,9 @@ export class BandBusiness implements BandRepository{
 			if (!name || !music_genre || !responsible) {
 				throw new BaseError(400,"Por favor, passe os parâmetros name, music_genre e responsible na requisição");
 			}
-			const userDatabase=new UserDatabase()
-			const authenticator = new Authenticator();
-			const authData=authenticator.getData(token)
-			const user= await userDatabase.getUserById(authData.id)
+
+			const authData= this.authenticator.getData(token)
+			const user= await this.userDatabase.getUserById(authData.id)
 			if(!authData){
 				throw new Error("Token inválido ou não passado")
 			     }
@@ -32,8 +31,8 @@ export class BandBusiness implements BandRepository{
 				
 			}
 			
-			const idGenerator = new IdGenerator();
-            const id = idGenerator.generate();
+	
+            const id = this.idGenerator.generate();
 			const band:band={
 				id,
 				name,
