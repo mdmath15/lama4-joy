@@ -1,22 +1,21 @@
 import { ShowDatabase } from "../../data/ShowDatabase";
 import { UserDatabase } from "../../data/UserDatabase";
 import { BaseError } from "../../error/BaseError";
-import { Show, show, ShowInputDTO, WEEK_DAY } from "../../model/Show";
+import { show, ShowInputDTO, WEEK_DAY } from "../../model/Show";
 import { Authenticator } from "../../services/Authenticator";
 import { IdGenerator } from "../../services/IdGenerator";
 import { ShowRepository } from "./ShowRepository";
 
 export class ShowBusiness implements ShowRepository{
-	showDatabase=new ShowDatabase()
+	constructor (private showDatabase: ShowDatabase, private userDatabase: UserDatabase, private authenticator: Authenticator, private idGenerator: IdGenerator) {}
 	async createShow(input: ShowInputDTO, token: string): Promise<void> {
 		try {
 			if (!token) {
 				throw new BaseError(400,"Por favor, passe o token no header da requisição");
 			}
-			const userDatabase=new UserDatabase()
-			const authenticator = new Authenticator();
-			const authData=authenticator.getData(token)
-			const user=  userDatabase.getUserById(authData.id)
+			
+			const authData = this.authenticator.getData(token)
+			const user=  this.userDatabase.getUserById(authData.id)
 			if(!authData){
 				throw new Error("Token inválido ou não passado")
 			     }
@@ -41,8 +40,8 @@ export class ShowBusiness implements ShowRepository{
 			if (weekDay !== WEEK_DAY.SEXTA && weekDay !== WEEK_DAY.SABADO && weekDay !== WEEK_DAY.DOMINGO) {
 				throw new BaseError(400,"Dia da semana inválido. Só são permitidos os dias SEXTA, SÁBADO ou DOMINGO para o registro de Show");
 			}
-			const idGenerator = new IdGenerator();
-			const id = idGenerator.generate();
+		
+			const id = this.idGenerator.generate();
 			const show:show={
 				id,
 				weekDay,
@@ -65,10 +64,9 @@ export class ShowBusiness implements ShowRepository{
 			if (!token) {
 				throw new BaseError(400,"Por favor, passe o token no header da requisição");
 			}
-			const userDatabase=new UserDatabase()
-			const authenticator = new Authenticator();
-			const authData=authenticator.getData(token)
-			const user=  userDatabase.getUserById(authData.id)
+			
+			const authData=this.authenticator.getData(token)
+			const user=  this.userDatabase.getUserById(authData.id)
 			if(!authData){
 				throw new Error("Token inválido ou não passado")
 			     }
