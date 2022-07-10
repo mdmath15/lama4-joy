@@ -30,7 +30,10 @@ const IdGeneratorMock = {
   })
 }
 
-const bandDatabaseMock = { createBand: jest.fn((input) => {}) } as any
+const bandDatabaseMock = {
+  createBand: jest.fn((input) => { }),
+  getBandByName: jest.fn()
+} as any
 
 const userDatabaseMock = {
   getUserById: jest.fn(() => {

@@ -1,4 +1,4 @@
-import { UserInputDTO, LoginInputDTO } from "../../model/User";
+import { UserInputDTO, LoginInputDTO, User } from "../../model/User";
 import { UserDatabase } from "../../data/UserDatabase";
 import { IdGenerator } from "../../services/IdGenerator";
 import { HashManager } from "../../services/HashManager";

@@ -32,7 +32,7 @@ export class Band{
 	    setResponsible(responsible:string){
 		this.responsible=responsible
 	    }
-	    static toBandModel(band: band):Band {
+	    static toBandModel(band: band):Band{
 		return new Band(band.id, band.name, band.music_genre, band.responsible);
 	      }
 }
